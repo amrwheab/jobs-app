@@ -1,0 +1,150 @@
+<div id="toast" class="hidden fixed bottom-4 right-4 bg-green-500 text-white py-2 px-4 rounded shadow-lg">
+  Action completed successfully!
+</div>
+<div class="max-w-sm rounded overflow-hidden shadow-lg p-5" *ngIf="showDetails">
+  <img class="w-full" [src]="data.cover" alt="Card image">
+  <div class="">
+    <div class="font-bold text-xl mb-2">{{data.title}}</div>
+    <p class="text-gray-700 text-base">
+      {{data.description}}
+    </p>
+    <p class="text-gray-700 text-base">
+      date: {{data.date_published | date:'dd-MM-YYYY'}}
+    </p>
+    <p class="text-gray-700 text-base">
+      priority: {{data.priority}}
+    </p>
+
+    <button type="submit" class="bg-blue-500 text-white py-2 px-2 rounded hover:bg-blue-700" (click)="showDetails = false" *ngIf="!data.applied">
+      Apply
+    </button>
+    <button type="submit" class="bg-red-500 text-white py-2 px-2 rounded hover:bg-red-700" (click)="disApply()" *ngIf="data.applied">
+      Applied
+    </button>
+    <button type="submit" class="bg-white-500 text-blue py-2 px-2 rounded hover:bg-white-700">
+      Save Jop
+    </button>
+  </div>
+</div>
+
+<div class="max-w-sm rounded overflow-hidden shadow-lg p-5" *ngIf="!showDetails">
+
+  <div class="max-w-md mx-auto mt-10">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block text-gray-700">Name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="mt-1 block w-full p-2 border rounded"
+        />
+        <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="text-red-500 text-sm">
+          Name is required
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="mt-1 block w-full p-2 border rounded"
+        />
+        <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-red-500 text-sm">
+          <div *ngIf="form.get('email')?.hasError('required')">Email is required</div>
+          <div *ngIf="form.get('email')?.hasError('email')">Invalid email address</div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Phone</label>
+        <input
+          type="text"
+          formControlName="phone"
+          class="mt-1 block w-full p-2 border rounded"
+        />
+        <div *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid" class="text-red-500 text-sm">
+          Phone is required
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Country</label>
+        <input
+          type="text"
+          formControlName="country"
+          class="mt-1 block w-full p-2 border rounded"
+        />
+        <div *ngIf="form.get('country')?.touched && form.get('country')?.invalid" class="text-red-500 text-sm">
+          Country is required
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Education</label>
+        <input
+          type="text"
+          formControlName="education"
+          class="mt-1 block w-full p-2 border rounded"
+        />
+        <div *ngIf="form.get('education')?.touched && form.get('education')?.invalid" class="text-red-500 text-sm">
+          Education is required
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Current Position</label>
+        <input
+          type="text"
+          formControlName="currentPosition"
+          class="mt-1 block w-full p-2 border rounded"
+        />
+        <div *ngIf="form.get('currentPosition')?.touched && form.get('currentPosition')?.invalid" class="text-red-500 text-sm">
+          Current position is required
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Company</label>
+        <input
+          type="text"
+          formControlName="company"
+          class="mt-1 block w-full p-2 border rounded"
+        />
+        <div *ngIf="form.get('company')?.touched && form.get('company')?.invalid" class="text-red-500 text-sm">
+          Company is required
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">CV</label>
+        <input
+          type="file"
+          (change)="onFileChange($event, 'CV')"
+          class="mt-1 block w-full p-2 border rounded"
+        />
+        <div *ngIf="form.get('CV')?.touched && form.get('CV')?.invalid" class="text-red-500 text-sm">
+          CV is required and should be less than 3MB
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700">Cover Letter</label>
+        <input
+          type="file"
+          (change)="onFileChange($event, 'coverLetter')"
+          class="mt-1 block w-full p-2 border rounded"
+        />
+        <div *ngIf="form.get('coverLetter')?.touched && form.get('coverLetter')?.invalid" class="text-red-500 text-sm">
+          Cover Letter is required and should be less than 3MB
+        </div>
+      </div>
+
+      <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded" [disabled]="form.invalid">
+        Submit
+      </button>
+    </form>
+  </div>
+
+
+</div>

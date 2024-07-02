@@ -1,0 +1,63 @@
+<div class="container mx-auto">
+  <h1 class="text-3xl font-bold">Jops</h1>
+</div>
+
+<div class="w-full md:w-1/2 px-4">
+  <div class="flex">
+    <form [formGroup]="searchForm" (ngSubmit)="search()" class="bg-white p-6 w-full max-w-sm">
+
+      <div class="mb-4">
+        <label for="title" class="block text-gray-700">Title</label>
+        <input id="title" formControlName="title" type="text" class="mt-1 p-2 border rounded w-full" placeholder="Enter title">
+      </div>
+
+      <div class="mb-4">
+        <label for="location" class="block text-gray-700">Location</label>
+        <input id="location" formControlName="location" type="text" class="mt-1 p-2 border rounded w-full" placeholder="Enter location">
+      </div>
+
+      <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+
+
+@if (error && !loading) {
+  <div class="container mx-auto">
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-4" role="alert">
+      <strong class="font-bold">Error!</strong>
+      <span class="block sm:block">Something went wrong while fetching the data.</span>
+    </div>
+  </div>
+}
+
+@if (jops.length && !loading) {
+  <div class="container mx-auto mt-4">
+    <div class="flex flex-wrap -mx-4">
+      <div class="w-full md:w-1/4 px-4 cursor-pointer" *ngFor="let jop of jops; trackBy: trackById" (click)="openDialog(jop)">
+        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+          <img class="w-full" [src]="jop.cover" alt="Card image">
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">{{jop.title}}</div>
+            <p class="text-gray-700 text-base">
+              {{jop.description}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center my-4">
+    <mat-paginator [length]="lastPage * 20" [pageSize]="20" [pageIndex]="page - 1" (page)="changePage($event)">
+    </mat-paginator>
+  </div>
+}
+
+@if (loading) {
+  <div class="flex justify-center items-center my-4">
+    <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+  </div>
+}
