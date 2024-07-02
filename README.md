@@ -11,12 +11,13 @@ Interactive between users and jops.
 ### What the project consist of?
 
 the project consist of : <br>
-1 - main page that contains pagination of the jops and to access it you should click on card or by searching by title or location. <br>
+- main page that contains pagination of the jops and to access it you should click on card or by searching by title or location. <br>
 
 ### What I used for project?
 1 - Tailwind for UI library. <br>
 2 - Angular material. <br>
-3 - ngrx for state managment of jops. <br>
+3 - Custom Directive. <br>
+4 - ngrx for state managment of jops. <br>
 
 ### How to install project locally and see it on localhost?
 1 - open cmd in the prefered path on your disk.
