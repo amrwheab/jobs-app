@@ -1,10 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Jop } from '../../interfaces/Jop';
+import { Jop } from '../shared/interfaces/Jop';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { applyForAJop } from '../../store/jops/jops.actions';
+import { applyForAJop } from '../shared/store/jops/jops.actions';
+import { ShowMoreDirective } from '../shared/direcrive/show-more.directive';
 
 @Component({
   selector: 'app-show-jop',
@@ -12,7 +13,8 @@ import { applyForAJop } from '../../store/jops/jops.actions';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShowMoreDirective
   ],
   templateUrl: './show-jop.component.html',
   styleUrl: './show-jop.component.scss'

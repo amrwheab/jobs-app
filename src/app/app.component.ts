@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filterJops, getJops } from '../store/jops/jops.actions';
-import { selectJopsState } from '../store/jops/jops.select';
-import { Jop } from '../interfaces/Jop';
+import { filterJops, getJops } from './shared/store/jops/jops.actions';
+import { selectJopsState } from './shared/store/jops/jops.select';
+import { Jop } from './shared/interfaces/Jop';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';

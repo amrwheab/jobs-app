@@ -5,8 +5,8 @@ import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { jopsReducer } from '../store/jops/jops.reducer';
-import { JopsEffects } from '../store/jops/jops.effect';
+import { jopsReducer } from './shared/store/jops/jops.reducer';
+import { JopsEffects } from './shared/store/jops/jops.effect';
 import { HttpClientModule } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
